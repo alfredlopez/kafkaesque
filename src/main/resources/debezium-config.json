@@ -1,0 +1,52 @@
+{
+  "DEFAULT": {
+    "Postgres": {
+      "name": "morningstar-connector",
+      "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "plugin.name": "decoderbufs",
+        "slot.drop_on_stop": "false",
+        "slot.name": "debezium",
+        "database.hostname": "10.234.29.32",
+        "database.port": "1433",
+        "database.user": "",
+        "database.password": "",
+        "database.dbname": "postgres",
+        "database.server.name": "ericmart",
+        "schema.whitelist": "",
+        "schema.blacklist": "",
+        "table.whitelist": "",
+        "table.blacklist": "",
+        "column.blacklist": "",
+        "database.sslmode": "require"
+      }
+    },
+    "MySQL": {
+      "name": "morningstar-connector",
+      "config": {
+        "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+        "plugin.name": "decoderbufs",
+        "slot.drop_on_stop": "false",
+        "slot.name": "debezium",
+        "database.hostname": "",
+        "database.port": "3306",
+        "database.user": "",
+        "database.password": "",
+        "database.dbname": "",
+        "database.server.name": "ericmart",
+        "database.server.id": "5400",
+        "schema.whitelist": "",
+        "schema.blacklist": "",
+        "table.whitelist": "",
+        "table.blacklist": "",
+        "column.blacklist": "",
+        "include.schema.changes": "true",
+        "database.sslmode": "require"
+      }
+    }
+  },
+  "DEV"   : {},
+  "LOCAL" : {},
+  "UAT"   : {},
+  "PROD"  : {}
+}

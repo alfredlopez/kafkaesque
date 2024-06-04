@@ -1,0 +1,123 @@
+{
+  "verticleName": "Application",
+  "instanceClass": "com.asanasoft.common.Application",
+  "instanceType": "standard",
+  "config": {},
+  "dependents": [
+    {
+      "verticleName": "KafkaConnectInstance",
+      "instanceClass": "com.asanasoft.common.verticle.KafkaConnectInstance",
+      "instanceType": "worker",
+      "config": {
+        "plugin.path": "/Work/Java/Kafkaesque/src/main/resources/kafka/plugins",
+        "connectors.dir": "/Work/Java/Kafkaesque/src/main/resources/kafka/connectors/LOCAL",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable":"true",
+        "value.converter.schemas.enable":"true",
+        "bootstrap.servers": "127.0.0.1:9092",
+        "offset.storage.file.filename":"data/kafka/connect/kcStorage",
+        "rest.host.name": "127.0.0.1",
+        "rest.port": "8083",
+        "error.tolerance": "all",
+        "errors.retry.timeout": "300000",
+        "errors.retry.delay.max": "30000",
+        "error.log.enable": "true",
+        "errors.log.include.messages": "false",
+        "errors.deadletterqueue.topic.name": "my-connector-errors"
+      },
+      "dependents": [
+        {
+          "verticleName": "KafkaInstance",
+          "instanceClass": "com.asanasoft.common.verticle.KafkaInstance",
+          "instanceType": "worker",
+          "config": {
+            "zookeeper.connect": "127.0.0.1:2181",
+            "offsets.topic.replication.factor": "1",
+            "zookeeper.session.timeout.ms": "30000",
+            "message.max.bytes": "250000",
+            "replica.fetch.max.bytes": "350000",
+            "replica.fetch.response.max.bytes": "350000",
+            "broker.id": "-1",
+            "delete.topic.enable": "true",
+            "log.dirs": "data/kafka/logs",
+            "log.flush.interval.messages": "1000",
+            "log.flush.interval.ms": "60000",
+            "log.retention.hours": "24",
+            "log.roll.hours": "1",
+            "max.poll.interval.ms": "600000",
+            "listeners": "PLAINTEXT://127.0.0.1:9092,SSL://:9091"
+          },
+          "dependents": [{
+            "verticleName": "ZookeeperInstance",
+            "instanceClass": "com.asanasoft.common.verticle.ZookeeperInstance",
+            "instanceType": "worker",
+            "dependents": [],
+            "config": {
+              "tickTime": "2000",
+              "dataDir": "data/zookeeper",
+              "clientPort": "2181",
+              "maxClientCnxns": "0"
+            }
+          }]
+        }
+      ]
+    },
+    {
+      "verticleName": "BitsyDBInstance",
+      "instanceClass": "com.asanasoft.common.verticle.BitsyDBInstance",
+      "instanceType": "worker",
+      "config": {
+        "backupStore": "DBStore",
+        "backupStoreConfig": "backupStoreConfig.properties",
+        "dbPath": "./data/bitsy/",
+        "dbName": "kafkaesque",
+        "GraphDBBackup": "./data/bitsy/"
+      },
+      "dependents": [
+      ]
+    },
+    {
+      "verticleName": "Scheduler",
+      "instanceClass": "com.asanasoft.common.verticle.Scheduler",
+      "instanceType": "worker",
+      "preInits": [
+        {
+          "instanceClass": "com.asanasoft.common.init.impl.CodecInitializer",
+          "config": {
+          }
+        }
+      ],
+      "config": {
+      },
+      "dependents": [
+      ]
+    },
+    {
+      "verticleName": "CacheInstance",
+      "instanceClass": "com.asanasoft.common.verticle.CacheInstance",
+      "instanceType": "worker",
+      "config": {
+        "defaultRegion": "kafkaesque",
+        "cacheAddress": "KafkaCache"
+      },
+      "preInits": [
+        {
+          "instanceClass": "com.asanasoft.common.init.impl.DataSources",
+          "config": {
+            "context": "datasources"
+          }
+        },
+        {
+          "instanceClass": "com.asanasoft.common.init.impl.DataInitializer",
+          "config": {
+            "datasourceName": "p-mysql",
+            "ddlFile": "loadDDL.sql"
+          }
+        }
+      ],
+      "dependents": [
+      ]
+    }
+  ]
+}

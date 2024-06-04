@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.asanasoft.pm.kafkaesque</groupId>
+    <artifactId>kafkaesque</artifactId>
+    <version>0.1</version>
+    <properties>
+        <kafka.version>2.2.0</kafka.version>
+        <version.debezium>0.9.3.Final</version.debezium>
+        <app.version>ver-0.1</app.version>
+        <vertx.version>4.3.8</vertx.version>
+        <!--<vertx.version>3.6.2</vertx.version>-->
+        <tinkerpop.version>3.3.3</tinkerpop.version>
+        <slf4j.version>1.7.22</slf4j.version>
+        <logback.version>1.1.10</logback.version>
+        <maven.test.skip>true</maven.test.skip>
+        <c3p0.version>0.9.5.2</c3p0.version>
+        <artifactoryContextUrl>https://artifactory.platform.asanasoft.io/artifactory</artifactoryContextUrl>
+        <releaseRepository>kafkaesque-maven-release</releaseRepository>
+        <snapshotRepository>kafkaesque-maven-snapshot</snapshotRepository>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <!--<Main-Class>io.vertx.core.Starter</Main-Class>-->
+                                        <Main-Class>com.asanasoft.common.MainLauncher</Main-Class>
+                                        <Main-Verticle>com.asanasoft.app.kafkaesque.KafkaesqueApplication</Main-Verticle>
+                                        <!--<Class-Path>-->
+                                        <!--./bouncycastle/bcmail-jdk14/1.38/bcmail-jdk14-1.38.jar-->
+                                        <!--./bouncycastle/bcprov-jdk14/1.38/bcprov-jdk14-1.38.jar-->
+                                        <!--./bouncycastle/bcpg-jdk15on/1.59/bcpg-jdk15on-1.59.jar-->
+                                        <!--./bouncycastle/bcpkix-jdk15on/1.56/bcpkix-jdk15on-1.56.jar-->
+                                        <!--./bouncycastle/bcprov-jdk15on/1.59/bcprov-jdk15on-1.59.jar-->
+                                        <!--./bouncycastle/bctsp-jdk14/1.38/bctsp-jdk14-1.38.jar-->
+                                        <!--</Class-Path>-->
+                                    </manifestEntries>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                            <artifactSet/>
+                            <outputFile>${project.build.directory}/Kafkaesque-Application.jar</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.jcabi</groupId>-->
+                <!--<artifactId>jcabi-maven-plugin</artifactId>-->
+                <!--<version>0.10</version>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>ajc</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.aspectj</groupId>-->
+                        <!--<artifactId>aspectjrt</artifactId>-->
+                        <!--<version>1.8.3</version>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.aspectj</groupId>-->
+                        <!--<artifactId>aspectjtools</artifactId>-->
+                        <!--<version>1.8.3</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <excludes>
+                        <exclude>com/asanasoft/common/model/connector/impl/debezium/*.java</exclude>
+                        <exclude>com/asanasoft/common/service/cron/impl/AlertsGenerator.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/extra</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+<dependencies>
+    <!-- Crypto -->
+    <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcpg-jdk15on</artifactId>
+        <version>1.60</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <!-- Logging -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.8.0-alpha2</version>
+    </dependency>
+
+    <!-- Database -->
+<!--    <dependency>-->
+<!--        <groupId>io.debezium</groupId>-->
+<!--        <artifactId>debezium-embedded</artifactId>-->
+<!--        <version>${version.debezium}</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>io.debezium</groupId>-->
+<!--        <artifactId>debezium-connector-postgres</artifactId>-->
+<!--        <version>${version.debezium}</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>io.debezium</groupId>-->
+<!--        <artifactId>debezium-connector-mysql</artifactId>-->
+<!--        <version>${version.debezium}</version>-->
+<!--    </dependency>-->
+
+    <dependency>
+        <groupId>com.mchange</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.5.2</version>
+    </dependency>
+    <dependency>
+        <groupId>c3p0</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.1.1</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.1.4</version>
+    </dependency>
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <version>7.4.1.jre8</version>
+    </dependency>
+    <dependency>
+        <groupId>com.lambdazen.bitsy</groupId>
+        <artifactId>bitsy</artifactId>
+        <!--<version>3.0.2</version>-->
+        <version>3.1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.196</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mariadb.jdbc</groupId>
+        <artifactId>mariadb-java-client</artifactId>
+        <version>1.1.7</version>
+    </dependency>
+    <dependency>
+        <groupId>DiffKit</groupId>
+        <artifactId>DiffKit</artifactId>
+        <version>0.9.1</version>
+    </dependency>
+    <dependency>
+        <groupId>us.fatehi</groupId>
+        <artifactId>schemacrawler</artifactId>
+        <version>16.3.0</version>
+    </dependency>
+
+    <!-- TinkerPop -->
+    <dependency>
+        <groupId>org.apache.tinkerpop</groupId>
+        <artifactId>tinkergraph-gremlin</artifactId>
+        <version>${tinkerpop.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tinkerpop</groupId>
+        <artifactId>gremlin-groovy</artifactId>
+        <version>${tinkerpop.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tinkerpop</groupId>
+        <artifactId>gremlin-core</artifactId>
+        <version>${tinkerpop.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tinkerpop</groupId>
+        <artifactId>gremlin-test</artifactId>
+        <version>${tinkerpop.version}</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- Vertx.io -->
+<!--    <dependency>-->
+<!--        <groupId>io.vertx</groupId>-->
+<!--        <artifactId>vertx-shell</artifactId>-->
+<!--        <version>${vertx.version}</version>-->
+<!--    </dependency>-->
+
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-auth-oauth2</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-unit</artifactId>
+        <version>${vertx.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-core</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-web</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-sync</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-codegen</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-service-proxy</artifactId>
+        <version>${vertx.version}</version>
+        <classifier>processor</classifier>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-web-client</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-mail-client</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-jdbc-client</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-hazelcast</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+<!--    <dependency>-->
+<!--        <groupId>io.vertx</groupId>-->
+<!--        <artifactId>vertx-web-api-contract</artifactId>-->
+<!--        <version>${vertx.version}</version>-->
+<!--    </dependency>-->
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-kafka-client</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-web-graphql</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+
+    <!-- Extra Java GraphQL scalars -->
+    <dependency>
+        <groupId>com.graphql-java</groupId>
+        <artifactId>graphql-java-extended-scalars</artifactId>
+        <version>1.0</version>
+    </dependency>
+
+    <!-- Vertx Metrics -->
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-micrometer-metrics</artifactId>
+        <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+
+    <!-- Scheduling -->
+    <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.2.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz-jobs</artifactId>
+        <version>2.2.1</version>
+    </dependency>
+
+    <!-- Network -->
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.7</version>
+    </dependency>
+    <dependency>
+        <groupId>com.hierynomus</groupId>
+        <artifactId>sshj</artifactId>
+        <version>0.23.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.hierynomus</groupId>
+        <artifactId>smbj</artifactId>
+        <version>0.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.jcraft</groupId>
+        <artifactId>jsch</artifactId>
+        <version>0.1.54</version>
+    </dependency>
+
+    <!-- AOP -->
+<!--    <dependency>-->
+<!--        <groupId>com.jcabi</groupId>-->
+<!--        <artifactId>jcabi-aspects</artifactId>-->
+<!--        <version>0.22.6</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>org.aspectj</groupId>-->
+<!--        <artifactId>aspectjrt</artifactId>-->
+<!--        <version>1.6.12</version>-->
+<!--        <scope>runtime</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>org.eclipse.aether</groupId>-->
+<!--        <artifactId>aether-api</artifactId>-->
+<!--        <version>1.0.2.v20150114</version>-->
+<!--    </dependency>-->
+
+    <!-- Email -->
+    <dependency>
+        <groupId>com.microsoft.ewsjavaapi</groupId>
+        <artifactId>exchange-ws-api</artifactId>
+        <version>1.1.5.2</version>
+    </dependency>
+
+    <!-- Diff -->
+    <dependency>
+        <groupId>de.danielbechler</groupId>
+        <artifactId>java-object-diff</artifactId>
+        <version>0.95</version>
+    </dependency>
+
+    <!-- Zookeeper -->
+    <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>3.4.14</version>
+    </dependency>
+
+    <!-- Kafka -->
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka_2.12</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-api</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-file</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-json</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-runtime</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-transforms</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.confluent/kafka-connect-jdbc -->
+    <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-jdbc</artifactId>
+        <version>5.3.1</version>
+    </dependency>
+
+    <!-- Caching -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-jcs-jcache</artifactId>
+        <version>2.2.1</version>
+    </dependency>
+
+    <!-- JNP Server -->
+    <dependency>
+        <groupId>org.jboss</groupId>
+        <artifactId>jnpserver</artifactId>
+        <version>4.2.3.GA</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache-extras.beanshell</groupId>
+        <artifactId>bsh</artifactId>
+        <version>2.0b6</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+    <dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+        <version>2.11.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.8.7</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.8.7</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.8.7</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.bsf</groupId>
+        <artifactId>bsf-api</artifactId>
+        <version>3.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-sql</artifactId>
+        <version>2.4.15</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.metamodel</groupId>
+        <artifactId>MetaModel-full</artifactId>
+        <version>5.3.2</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--        <groupId>org.apache.ddlutils</groupId>-->
+<!--        <artifactId>ddlutils</artifactId>-->
+<!--        <version>1.0</version>-->
+<!--    </dependency>-->
+
+    <dependency>
+        <groupId>com.healthmarketscience.sqlbuilder</groupId>
+        <artifactId>sqlbuilder</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+
+    <!--    <dependency>-->
+<!--        <groupId>org.codehaus.groovy</groupId>-->
+<!--        <artifactId>groovy-json</artifactId>-->
+<!--        <version>2.5.7</version>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-sql -->
+<!--    <dependency>-->
+<!--        <groupId>org.codehaus.groovy</groupId>-->
+<!--        <artifactId>groovy-sql</artifactId>-->
+<!--        <version>2.0.1</version>-->
+<!--    </dependency>-->
+
+
+</dependencies>
+
+</project>

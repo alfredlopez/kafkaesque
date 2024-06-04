@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job-scheduling-data
+        xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData
+        http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd"
+        version="1.8">
+    <schedule>
+        <job>
+            <name>CheckForLDIPerformanceData</name>
+            <group>EmailMonitorService</group>
+            <description></description>
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>CheckForLDIPerformanceData</name>
+                <job-name>CheckForLDIPerformanceData</job-name>
+                <job-group>EmailMonitorService</job-group>
+                <cron-expression>0 15 14,15,16,17,18,19,20,21 * * ?</cron-expression>
+            </cron>
+        </trigger>
+
+        <!-- ** DB BACKUPS ** DB BACKUPS ** DB BACKUPS ** DB BACKUPS ** DB BACKUPS ** DB BACKUPS ** DB BACKUPS ** -->
+
+        <!-- "Bitsy backup" job - runs hourly -->
+
+        <job>
+            <name>GraphDBBackup</name>
+            <group>GraphDB</group>
+            <description></description>
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>GraphDBBackup</name>
+                <job-name>GraphDBBackup</job-name>
+                <job-group>GraphDB</job-group>
+                <cron-expression>0 0 * * * ?</cron-expression>
+            </cron>
+        </trigger>
+
+        <!-- ** FILE CLEANUP ** FILE CLEANUP ** FILE CLEANUP ** FILE CLEANUP ** FILE CLEANUP ** FILE CLEANUP ** FILE CLEANUP ** -->
+
+        <!-- "File Cleanup" jobs - run every Tuesday night starting at 12:20 midnight when EST and 1:20 AM when daylight savings time -->
+        <!-- Note: The PCF server is in UTC, which is 5 hours ahead during EST and 4 hours ahead during daylight savings time -->
+
+        <job>
+            <name>DeleteOldLDIPerformanceDataFiles</name>
+            <group>FileCleanupService</group>
+            <description></description>
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>DeleteOldLDIPerformanceDataFiles</name>
+                <job-name>DeleteOldLDIPerformanceDataFiles</job-name>
+                <job-group>FileCleanupService</job-group>
+                <cron-expression>0 20 5 ? * WED</cron-expression>
+            </cron>
+        </trigger>
+
+        <job>
+            <name>DeleteOldBitsyBackups</name>
+            <group>FileCleanupService</group>
+            <description></description>
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>DeleteOldBitsyBackups</name>
+                <job-name>DeleteOldBitsyBackups</job-name>
+                <job-group>FileCleanupService</job-group>
+                <cron-expression>0 24 5 ? * WED</cron-expression>
+            </cron>
+        </trigger>
+
+        <job>
+            <name>DeleteOldMySqlBackups</name>
+            <group>FileCleanupService</group>
+            <description></description>
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>DeleteOldMySqlBackups</name>
+                <job-name>DeleteOldMySqlBackups</job-name>
+                <job-group>FileCleanupService</job-group>
+                <cron-expression>0 26 5 ? * WED</cron-expression>
+            </cron>
+        </trigger>
+
+        <job>
+            <name>CheckForNewScripts</name>
+            <group>ShellMonitorService</group>
+            <description></description>
+
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>CheckForNewScripts</name>
+                <job-name>CheckForNewScripts</job-name>
+                <job-group>ShellMonitorService</job-group>
+
+                <!-- Every 15 minutes -->
+                <cron-expression>0 0/5 * ? * * *</cron-expression>
+            </cron>
+        </trigger>
+
+        <job>
+            <name>DeleteShellFiles</name>
+            <group>ShellMonitorService</group>
+            <description></description>
+
+            <job-class>org.quartz.jobs.NoOpJob</job-class>
+        </job>
+        <trigger>
+            <cron>
+                <name>DeleteShellFiles</name>
+                <job-name>DeleteShellFiles</job-name>
+                <job-group>ShellMonitorService</job-group>
+
+                <cron-expression>0 0 17 ? * MON,TUE,WED,THU,FRI *</cron-expression>
+                <!--<cron-expression>0 30 12 ? * MON,TUE,WED,THU,FRI *</cron-expression>-->
+            </cron>
+        </trigger>
+    </schedule>
+</job-scheduling-data>

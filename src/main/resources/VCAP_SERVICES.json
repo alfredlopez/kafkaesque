@@ -1,0 +1,70 @@
+{
+  "p-identity": [
+    {
+      "name": "SSO",
+      "instance_name": "SSO",
+      "binding_name": null,
+      "credentials": {
+        "auth_domain": "https://asanasoft-dev.login.sys.cac.preview.pcf.asanasoft.com",
+        "client_secret": "ee212b10-c9dd-4f02-aa42-cd53a28a6b52",
+        "client_id": "94252c4b-16aa-4942-be3e-10a8df2c886d"
+      },
+      "syslog_drain_url": null,
+      "volume_mounts": [],
+      "label": "p-identity",
+      "provider": null,
+      "plan": "asanasoft-dev",
+      "tags": []
+    }
+  ],
+  "azure-sqldb": [
+    {
+      "name": "kafkaesque",
+      "instance_name": "kafkaesque",
+      "binding_name": null,
+      "credentials": {
+        "sqldbName": "gregor",
+        "sqlServerName": "azugessqlpreview",
+        "sqlServerFullyQualifiedDomainName": "azugessqlpreview.database.windows.net",
+        "databaseLogin": "u08f2b510f43",
+        "databaseLoginPassword": "qfNgBO8flazWmFqysKwT07mv4VKyAbZefHmjiAN8EqDSghdIRBRRlw==",
+        "jdbcUrl": "jdbc:sqlserver://azugessqlpreview.database.windows.net:1433;database=gregor;user=u08f2b510f43;password=qfNgBO8flazWmFqysKwT07mv4VKyAbZefHmjiAN8EqDSghdIRBRRlw==;Encrypt=true;TrustServerCertificate=false;HostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+        "jdbcUrlForAuditingEnabled": "jdbc:sqlserver://azugessqlpreview.database.secure.windows.net:1433;database=gregor;user=u08f2b510f43;password=qfNgBO8flazWmFqysKwT07mv4VKyAbZefHmjiAN8EqDSghdIRBRRlw==;Encrypt=true;TrustServerCertificate=false;HostNameInCertificate=*.database.secure.windows.net;loginTimeout=30;",
+        "hostname": "azugessqlpreview.database.windows.net",
+        "port": 1433,
+        "name": "gregor",
+        "username": "u08f2b510f43",
+        "password": "qfNgBO8flazWmFqysKwT07mv4VKyAbZefHmjiAN8EqDSghdIRBRRlw==",
+        "uri": "mssql://u08f2b510f43:qfNgBO8flazWmFqysKwT07mv4VKyAbZefHmjiAN8EqDSghdIRBRRlw%3D%3D@azugessqlpreview.database.windows.net:1433/gregor?encrypt=true&TrustServerCertificate=false&HostNameInCertificate=%2A.database.windows.net"
+      },
+      "syslog_drain_url": null,
+      "volume_mounts": [],
+      "label": "azure-sqldb",
+      "provider": null,
+      "plan": "StandardS1",
+      "tags": []
+    }
+  ],
+  "p.mysql":[
+    {
+      "binding_name":null,
+      "credentials":{
+        "hostname":"10.237.88.58",
+        "jdbcUrl":"jdbc:mysql://10.237.88.58:3306/service_instance_db?user=e82f654b67174ac4a05552e859da4bac&password=xhnd0kdezomnzrsw&useSSL=false",
+        "name":"service_instance_db",
+        "password":"xhnd0kdezomnzrsw",
+        "port":3306,
+        "uri":"mysql://e82f654b67174ac4a05552e859da4bac:xhnd0kdezomnzrsw@10.237.88.58:3306/service_instance_db?reconnect=true",
+        "username":"e82f654b67174ac4a05552e859da4bac"
+      },
+      "instance_name":"roach",
+      "label":"p.mysql",
+      "name":"roach",
+      "plan":"db-medium",
+      "provider":null,
+      "syslog_drain_url":null,
+      "tags":["mysql"],
+      "volume_mounts":[]
+    }
+  ]
+}

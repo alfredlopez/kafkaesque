@@ -1,0 +1,1446 @@
+{
+	"info": {
+		"_postman_id": "b88ca5c1-1e2b-4f92-973f-bd7a58a82e6c",
+		"name": "GraphQL",
+		"description": "Series of GraphQL query example for Kafaesque\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Kafkaesque-DEV",
+			"item": [
+				{
+					"name": "Get Connetors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Config",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/[name]/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/[name]/status",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/ericmart-source-pmar/pause",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"ericmart-source-pmar",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/[name]/resume",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Connector",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/[name]",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restart Connector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/ericmart-sink-pmar/tasks/3/restart",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"ericmart-sink-pmar",
+								"tasks",
+								"3",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save/Update Connetor Config",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"connector.class\": \"io.confluent.connect.jdbc.JdbcSourceConnector\",\n    \"timestamp.column.name\": \"load_timestamp\",\n    \"errors.log.include.messages\": \"true\",\n    \"incrementing.column.name\": \"load_id\",\n    \"dialect.name\": \"PostgreSqlDatabaseDialect\",\n    \"connection.password\": \"LOeV,GM$9HdJc\\\\Q{h1bM~oU#@\",\n    \"tasks.max\": \"4\",\n    \"table.types\": \"TABLE\",\n    \"table.poll.interval.ms\": \"600000\",\n    \"table.whitelist\": \"delete_test_i,delete_test_d\",\n    \"mode\": \"timestamp+incrementing\",\n    \"topic.prefix\": \"ericmart-jdbc-\",\n    \"connection.user\": \"pmar_dev\",\n    \"schema.pattern\": \"pmar_dash\",\n    \"poll.interval.ms\": \"60000\",\n    \"name\": \"ericmart-source-delete\",\n    \"errors.tolerance\": \"all\",\n    \"numeric.mapping\": \"best_fit\",\n    \"connection.url\": \"jdbc:postgresql://10.234.29.32:1433/postgres?ssl=true\",\n    \"errors.log.enable\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com/connectors/ericmart-source-delete/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-dev",
+								"apps",
+								"cac",
+								"preview",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"ericmart-source-delete",
+								"config"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kafkaesque-LOCAL",
+			"item": [
+				{
+					"name": "Get Connetors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Config",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/[name]/config",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"[name]",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/[name]/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"[name]",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/ericmart-source-pmar/pause",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"ericmart-source-pmar",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/[name]/resume",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"[name]",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Connector",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/[name]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"[name]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restart Connector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/ericmart-sink-pmar/tasks/3/restart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"ericmart-sink-pmar",
+								"tasks",
+								"3",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save/Update Connetor Config",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"connector.class\": \"io.confluent.connect.jdbc.JdbcSinkConnector\",\n    \"errors.log.include.messages\": \"true\",\n    \"table.name.format\": \"${topic}\",\n    \"connection.password\": \"usk8JdNlULOniTiM\",\n    \"tasks.max\": \"1\",\n    \"transforms\": \"route\",\n    \"topics.regex\": \"ericmart-jdbc-dropdown_values\",\n    \"mode\": \"incremental\",\n    \"transforms.route.type\": \"org.apache.kafka.connect.transforms.RegexRouter\",\n    \"transforms.route.regex\": \"ericmart-jdbc-(.*)\",\n    \"connection.user\": \"3jU3RTWxbafFmEMy\",\n    \"name\": \"ericmart-sink-mysql\",\n    \"errors.tolerance\": \"all\",\n    \"auto.create\": \"true\",\n    \"connection.url\": \"jdbc:mysql://10.237.253.6:3306/cf_3c37e1b4_38eb_4eee_88d0_ba52cb81ee56\",\n    \"insert.mode\": \"insert\",\n    \"errors.log.enable\": \"true\",\n    \"transforms.route.replacement\": \"$1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/connectors/ericmart-sink-mysql/config",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"connectors",
+								"ericmart-sink-mysql",
+								"config"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kafkaesque-UAT",
+			"item": [
+				{
+					"name": "Get Connetors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Config",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/[name]/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/[name]/status",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/[name]/pause",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/[name]/resume",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Connector",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/[name]",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restart Connector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/[name]/restart",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save/Update Connetor Config",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"connector.class\": \"io.confluent.connect.jdbc.JdbcSinkConnector\",\n    \"errors.log.include.messages\": \"true\",\n    \"table.name.format\": \"${topic}\",\n    \"connection.password\": \"usk8JdNlULOniTiM\",\n    \"tasks.max\": \"1\",\n    \"transforms\": \"route\",\n    \"topics.regex\": \"ericmart-jdbc-dropdown_values\",\n    \"mode\": \"incremental\",\n    \"transforms.route.type\": \"org.apache.kafka.connect.transforms.RegexRouter\",\n    \"transforms.route.regex\": \"ericmart-jdbc-(.*)\",\n    \"connection.user\": \"3jU3RTWxbafFmEMy\",\n    \"name\": \"ericmart-sink-mysql\",\n    \"errors.tolerance\": \"all\",\n    \"auto.create\": \"true\",\n    \"connection.url\": \"jdbc:mysql://10.237.253.6:3306/cf_3c37e1b4_38eb_4eee_88d0_ba52cb81ee56\",\n    \"insert.mode\": \"insert\",\n    \"errors.log.enable\": \"true\",\n    \"transforms.route.replacement\": \"$1\"\n}"
+						},
+						"url": {
+							"raw": "https://kafkaesque-uat.apps.cac.pcf.asanasoft.com/connectors/ericmart-sink-mysql/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque-uat",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"ericmart-sink-mysql",
+								"config"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kafkaesque-PROD",
+			"item": [
+				{
+					"name": "Get Connetors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://kafkaesque.apps.cac.pcf.asanasoft.com/connectors",
+							"protocol": "http",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Config",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/[name]/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/[name]/status",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/[name]/pause",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/[name]/resume",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Connector",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/[name]",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restart Connector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/[name]/restart",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save/Update Connetor Config",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"connector.class\": \"io.confluent.connect.jdbc.JdbcSinkConnector\",\n    \"errors.log.include.messages\": \"true\",\n    \"table.name.format\": \"${topic}\",\n    \"connection.password\": \"usk8JdNlULOniTiM\",\n    \"tasks.max\": \"1\",\n    \"transforms\": \"route\",\n    \"topics.regex\": \"ericmart-jdbc-dropdown_values\",\n    \"mode\": \"incremental\",\n    \"transforms.route.type\": \"org.apache.kafka.connect.transforms.RegexRouter\",\n    \"transforms.route.regex\": \"ericmart-jdbc-(.*)\",\n    \"connection.user\": \"3jU3RTWxbafFmEMy\",\n    \"name\": \"ericmart-sink-mysql\",\n    \"errors.tolerance\": \"all\",\n    \"auto.create\": \"true\",\n    \"connection.url\": \"jdbc:mysql://10.237.253.6:3306/cf_3c37e1b4_38eb_4eee_88d0_ba52cb81ee56\",\n    \"insert.mode\": \"insert\",\n    \"errors.log.enable\": \"true\",\n    \"transforms.route.replacement\": \"$1\"\n}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cac.pcf.asanasoft.com/connectors/ericmart-sink-mysql/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cac",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"ericmart-sink-mysql",
+								"config"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kafkaesque-PROD DR",
+			"item": [
+				{
+					"name": "Get Connetors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Config",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/[name]/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connetor Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/[name]/status",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/[name]/pause",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume Connector",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/[name]/resume",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Connector",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/[name]",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restart Connector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/[name]/restart",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"[name]",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save/Update Connetor Config",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"connector.class\": \"io.confluent.connect.jdbc.JdbcSinkConnector\",\n    \"errors.log.include.messages\": \"true\",\n    \"table.name.format\": \"${topic}\",\n    \"connection.password\": \"usk8JdNlULOniTiM\",\n    \"tasks.max\": \"1\",\n    \"transforms\": \"route\",\n    \"topics.regex\": \"ericmart-jdbc-dropdown_values\",\n    \"mode\": \"incremental\",\n    \"transforms.route.type\": \"org.apache.kafka.connect.transforms.RegexRouter\",\n    \"transforms.route.regex\": \"ericmart-jdbc-(.*)\",\n    \"connection.user\": \"3jU3RTWxbafFmEMy\",\n    \"name\": \"ericmart-sink-mysql\",\n    \"errors.tolerance\": \"all\",\n    \"auto.create\": \"true\",\n    \"connection.url\": \"jdbc:mysql://10.237.253.6:3306/cf_3c37e1b4_38eb_4eee_88d0_ba52cb81ee56\",\n    \"insert.mode\": \"insert\",\n    \"errors.log.enable\": \"true\",\n    \"transforms.route.replacement\": \"$1\"\n}"
+						},
+						"url": {
+							"raw": "https://kafkaesque.apps.cae.pcf.asanasoft.com/connectors/ericmart-sink-mysql/config",
+							"protocol": "https",
+							"host": [
+								"kafkaesque",
+								"apps",
+								"cae",
+								"pcf",
+								"asanasoft",
+								"com"
+							],
+							"path": [
+								"connectors",
+								"ericmart-sink-mysql",
+								"config"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	]
+}

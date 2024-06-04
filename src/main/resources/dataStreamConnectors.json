@@ -1,0 +1,54 @@
+{
+  "connectors": [
+    {
+      "connectorName": "SchemaCrawler",
+      "instanceName": "EricMartSchemaConnection",
+      "instance": "com.asanasoft.common.model.connector.impl.schemacrawler.SchemaCrawlerDataStreamConnector",
+      "type": "schema",
+      "config": {
+        "sourceDataSource": "EricMart",
+        "targetDataSource": "IDP",
+        "cron": {
+          "seconds": "*",
+          "minutes": "0",
+          "hours": "0",
+          "day": "?",
+          "month": "*",
+          "week_day": "?",
+          "year": "*"
+        }
+      }
+    },
+    {
+      "connectorName": "DiffKit",
+      "instanceName": "EricMartDataConnection",
+      "instance": "com.asanasoft.common.model.connector.impl.diffkit.DiffKitDataStreamConnector",
+      "type": "table",
+      "config": {
+        "sourceDataSource": "EricMart",
+        "targetDataSource": "IDP",
+        "cron": {
+          "seconds": "*",
+          "minutes": "0/10",
+          "hours": "1-23",
+          "day": "?",
+          "month": "*",
+          "week_day": "?",
+          "year": "*"
+        }
+      }
+    }
+  ],
+  "listeners" : [
+    {
+      "listenerName": "TableListener",
+      "instanceName": "com.asanasoft.common.model.listener.impl.TableChangeStreamListener",
+      "connectorName": "DiffKit"
+    },
+    {
+      "listenerName": "SchemaListener",
+      "instanceName": "com.asanasoft.common.model.listener.impl.SchemaChangeStreamListener",
+      "connectorName": "SchemaCrawler"
+    }
+  ]
+}

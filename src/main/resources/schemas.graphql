@@ -1,0 +1,43 @@
+scalar Object
+scalar JSON
+
+type Query {
+  getRows(
+    startRow: Int,
+    endRow: Int,
+    tableName: String!,
+    columns: [String],
+    where: [String],
+    groupBy: [String],
+    orderBy: [String]
+  ): Object
+
+  getObject(
+    entityType: String!,
+    id: String!,
+    keyField: String
+  ):Object
+
+  getObjects(
+    deep: Boolean!
+    prototype: Object!
+  ):Object
+}
+
+type Mutation {
+  setObject(
+    content: JSON
+  ):Object
+}
+
+type ObjectResponse {
+  success: Boolean!
+  message: String!
+  object: JSON
+}
+
+type ObjectListResponse {
+  success: Boolean!
+  message: String!
+  objects: [JSON]
+}

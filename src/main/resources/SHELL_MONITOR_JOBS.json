@@ -1,0 +1,30 @@
+[
+  {
+    "jobName": "RemoteShellBatchScriptFilesRead",
+    "jobs": {
+      "name": "BatchScriptFilesRead",
+      "lastRunDate": "",
+      "status": ""
+    }
+  },
+  {
+    "jobName": "RemoteShellScriptsExecute",
+    "jobs": {
+      "name": "ShellScriptsExecute",
+      "lastRunDate": "",
+      "status": ""
+    }
+  },
+  {
+    "jobName": "WriteOnGremlin",
+    "jobs": {
+      "name": "WriteOnGremlin",
+      "lastRunDate": "",
+      "status": ""
+    }
+  }
+]
+
+
+
+

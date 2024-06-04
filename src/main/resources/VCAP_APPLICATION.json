@@ -1,0 +1,18 @@
+{
+  "cf_api": "https://api.sys.cac.preview.pcf.asanasoft.com",
+  "limits": {
+    "fds": 16384
+  },
+  "application_name": "kafkaesque-dev",
+  "application_uris": [
+    "kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com"
+  ],
+  "name": "kafkaesque-dev",
+  "space_name": "PMAR-CAC-DEV",
+  "space_id": "670d9812-c189-43ca-a33f-7e7633e36209",
+  "uris": [
+    "kafkaesque-dev.apps.cac.preview.pcf.asanasoft.com"
+  ],
+  "users": null,
+  "application_id": "84b3fb17-5d86-4ba4-9909-5ea612a8017c"
+}
